@@ -1,0 +1,19 @@
+{
+  "name": "@netdrive/core",
+  "version": "0.1.7",
+  "repository": "https://github.com/valerian-borisovich/netdrive",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"Info: no specified\" && exit ",
+    "test": "node test/index.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path .",
+    "release": "node ../../scripts/release.js --commit-path ."
+  },
+  "dependencies": {
+    "mime": "^2.5.2",
+    "node-fetch": "^2.6.1",
+    "write-file-atomic": "^3.0.3",
+    "yaml": "^1.10.2"
+  }
+}

@@ -1,0 +1,23 @@
+name: "Feature request"
+description: Feature request
+labels: ["enhancement: pending triage"]
+body:
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Description of the feature
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-solution
+    attributes:
+      label: Suggested solution
+      description: A solution to achieve this requirement.
+    validations:
+      required: false
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: |
+        Any other context or screenshots about the feature request here.

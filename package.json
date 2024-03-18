@@ -1,0 +1,35 @@
+{
+  "name": "netdrive-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "dev": "cd packages/netdrive && yarn dev",
+    "build-server": "cd packages/netdrive && yarn pkg",
+    "dev-web": "cd packages/netdrive-web && yarn dev",
+    "build-web": "cd packages/netdrive-web && yarn build",
+    "build": "node scripts/build.js",
+    "lint": "eslint --ext .ts packages/*/src/**.ts",
+    "format": "prettier --write --parser typescript \"packages/**/*.ts?(x)\"",
+    "release": "node scripts/release.js",
+    "ci": "cd packages/netdrive && yarn release",
+    "changelog": "node scripts/changelog.js",
+    "pkg": "cd packages/netdrive && yarn pkg-demo"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.2",
+    "conventional-changelog-cli": "^2.1.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.28.0",
+    "execa": "^5.1.1",
+    "minimist": "^1.2.5",
+    "nodemon": "^2.x",
+    "pkg": "^5.3.1",
+    "prompts": "^2.4.1",
+    "semver": "^7.3.5"
+  }
+}
