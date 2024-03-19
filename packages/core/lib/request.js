@@ -1,9 +1,6 @@
 const fetch = require('node-fetch')
-
 const https = require('https')
-
 const btoa = (v) => Buffer.from(v).toString('base64')
-
 const querystring = require('querystring')
 
 // {

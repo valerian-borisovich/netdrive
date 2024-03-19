@@ -27,7 +27,7 @@ setup:
 .PHONY: clean
 clean:
 	@echo "============================================="
-	@echo "- Cleaning  -"
+	@echo "               - Cleaning  -"
 	@echo "============================================="
 
 	rm -rf `find . -type d -name build`

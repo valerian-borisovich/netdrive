@@ -45,15 +45,12 @@ const getIpv4 = () => {
 
 const onListening = () => {
   console.log(new Date().toISOString())
-  console.log('NetDrive Server is running at http://' + getIpv4() + ':' + port + '/')
+  console.log('NetDrive server is running at http://' + getIpv4() + ':' + port + '/')
 }
 
-if (!fs.existsSync('./cache')) {
-  fs.mkdirSync('./cache')
-}
+if (!fs.existsSync('./cache')) { fs.mkdirSync('./cache')}
 
 const port = process.env.PORT || 33001
-
 const server = http.createServer(app.callback())
 server.on('error', onError).on('listening', onListening)
 server.listen(port)

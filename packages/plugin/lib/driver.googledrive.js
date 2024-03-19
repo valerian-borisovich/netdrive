@@ -1,11 +1,8 @@
 /**
  * GoogleDrive
  */
-
 const protocol = 'googledrive'
-
 const DEFAULT_ROOT_ID = 'root'
-
 const UPLOAD_PART_SIZE = 5 * 1024 * 1024
 
 class Manager {
@@ -58,7 +55,7 @@ class Manager {
   }
 
   /**
-   * 刷新令牌 / refresh token
+   * Refresh token
    *
    * @param {object} credentials
    * @param {object} { credentials: object } | { error:true, message:string }
@@ -133,18 +130,16 @@ class Driver {
     this.label = 'Google Drive'
     this.mountable = true
     this.cache = true
-
     this.version = '1.0'
     this.protocol = protocol
-
     this.max_age_dir = 7 * 24 * 60 * 60 * 1000 // 7 days
 
     this.guide = [
-      { key: 'client_id', label: '应用ID / Client ID', type: 'string', required: true },
-      { key: 'client_secret', label: '应用机密 / Client Secret', type: 'string', required: true },
-      { key: 'redirect_uri', label: '回调地址 / Redirect URI', required: true },
-      { key: 'refresh_token', label: '刷新令牌 / Refresh Token', type: 'string', required: true },
-      { key: 'root_id', label: '初始文件夹ID', help: '', type: 'string', required: false },
+      { key: 'client_id', label: 'Client ID', type: 'string', required: true },
+      { key: 'client_secret', label: 'Client Secret', type: 'string', required: true },
+      { key: 'redirect_uri', label: 'Redirect URI', required: true },
+      { key: 'refresh_token', label: 'Refresh Token', type: 'string', required: true },
+      { key: 'root_id', label: 'Root ID', help: '', type: 'string', required: false },
     ]
 
     this.abusiveFilesMap = {}
@@ -286,7 +281,7 @@ class Driver {
    * @param {string} [id] folder id
    * @param {string} [name] folder name
    * @param {object} [options] options
-   * @param {object} [options.check_name_mode] 
+   * @param {object} [options.check_name_mode]
    * @return {object}
    *
    * @api public

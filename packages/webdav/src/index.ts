@@ -20,17 +20,11 @@ const VirtualDriver: Driver = (actions: DriverMethod, options: any): any => {
 
 export class WebDAVServer {
   public methods: { [methodName: string]: WebDAVMethod }
-
   protected unknownMethod: WebDAVMethod | undefined
-
   protected driver: Driver | undefined
-
   protected base: string
-
   protected auth: WebDAVAuth
-
   protected config: Record<string, any>
-
   protected allows: Array<string>
 
   constructor({ driver, base, redirect, auth }: WebDAVServerOptions = { redirect: false, auth: () => true }) {

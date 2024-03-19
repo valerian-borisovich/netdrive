@@ -3,13 +3,9 @@
  */
 
 const { URL } = require('url')
-
 const protocol = 'onedrive'
-
 const DEFAULT_ROOT_ID = 'root'
-
 const UPLOAD_PART_SIZE = 4 * 1024 * 1024
-
 const UPLOAD_PART_SIZE_LARGE = 16 * 1024 * 1024
 
 const support_zone = {
@@ -304,12 +300,9 @@ class Driver {
     this.name = 'OneDrive'
     this.mountable = true
     this.cache = true
-
     this.version = '1.0'
     this.protocol = protocol
-
     this.max_age_dir = 7 * 24 * 60 * 60 * 1000 // 7 days
-
     this.guide = mountData()
   }
 
@@ -454,7 +447,7 @@ class Driver {
    * @param {string} [parent_id] folder id
    * @param {string} [name] folder name
    * @param {object} [options] options
-   * @param {object} [options.check_name_mode] 
+   * @param {object} [options.check_name_mode]
    * @return {object}
    *
    * @api public
@@ -489,7 +482,7 @@ class Driver {
    * @param {string} [id] folder id
    * @param {string} [name] folder name
    * @param {object} [options] options
-   * @param {object} [options.check_name_mode] 
+   * @param {object} [options.check_name_mode]
    * @param {string} [key] key
    * @return {object}
    *

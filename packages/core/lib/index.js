@@ -230,9 +230,7 @@ module.exports = async (options) => {
   }
 
   const driver = createDriver(netdrive)
-
   netdrive.driver = driver
-
   bootstrape()
 
   return {

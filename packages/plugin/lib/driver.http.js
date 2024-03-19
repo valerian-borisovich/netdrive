@@ -3,9 +3,7 @@
  */
 
 const name = 'HTTPFile'
-
 const version = '1.0'
-
 const protocol = 'http'
 
 module.exports = ({ wrapReadableStream, request }) => {

@@ -42,7 +42,7 @@ module.exports = (app) => {
   const getByPath = async (paths) => {
     if (paths.length == 0) {
       return {
-        id: 'root://netdrive', name: 'Sharelist', type: 'folder', size: 0, ctime: Date.now(), mtime: Date.now()
+        id: 'root://netdrive', name: 'Netdrive', type: 'folder', size: 0, ctime: Date.now(), mtime: Date.now()
       }
     }
 
@@ -145,12 +145,12 @@ module.exports = (app) => {
 
   /**
    * list
-   * @param {object} options 
+   * @param {object} options
    * @param {string} options.id
    * @param {array} options.paths
    * @param {object} options.query
    * @param {boolean} options.ignoreInterceptor
-   * 
+   *
    * @returns {array<file>}
    */
   const list = async ({ paths = [], id, query, ignoreInterceptor = false } = {}) => {
@@ -187,10 +187,10 @@ module.exports = (app) => {
 
   /**
    * 由于部分driver没有完整的get 接口,因而此方法主要用于获取下载地址
-   * @param {object} options 
+   * @param {object} options
    * @param {string} options.id
    * @param {array} options.paths
-   * 
+   *
    * @returns {object}
    */
   const get = async ({ paths = [], id }) => {
@@ -222,11 +222,11 @@ module.exports = (app) => {
   /**
    * 返回指定id的只读流
    * @param {string} id file id
-   * @param {object} options 
+   * @param {object} options
    * @param {object | undefined} options.reqHeaders
    * @param {number} options.start offset start
    * @param {number} options.end offset end
-   * 
+   *
    * @returns { stream , acceptRanges , headers? , status?  }
    */
   const createReadStream = async (id, options = {}) => {
@@ -278,11 +278,11 @@ module.exports = (app) => {
   /**
    * 返回指定一个可写流
    * @param {string} id file id
-   * @param {object} options 
+   * @param {object} options
    * @param {number} options.size
    * @param {string} options.name
    * @param {string} options.sha1
-   * 
+   *
    * @returns { stream:WritableStream , doneHandler:Function  }
    * @public
    */
@@ -315,7 +315,7 @@ module.exports = (app) => {
    * @param {string} options.name
    * @param {string} options.sha1
    * @returns {object}
-   * 
+   *
    * @public
    */
   const upload = async (id, options) => {
@@ -339,7 +339,7 @@ module.exports = (app) => {
    * @param {string} name
    * @param {object} options
    * @returns {object}
-   * 
+   *
    * @public
    */
   const mkdir = async (id, name, options = {}) => {
@@ -361,7 +361,7 @@ module.exports = (app) => {
    * @param {string} id
    * @param {object} options
    * @returns {object}
-   * 
+   *
    * @public
    */
   const rm = async (id) => {
@@ -390,7 +390,7 @@ module.exports = (app) => {
    * @param {string} id
    * @param {string} name new file name
    * @returns {object}
-   * 
+   *
    * @public
    */
   const rename = async (id, name, options = {}) => {
@@ -415,7 +415,7 @@ module.exports = (app) => {
     app.error({ code: 501, message: "Not implemented" })
   }
 
-  //only support same protocol  
+  //only support same protocol
   const mv = async (id, target_id, options = {}) => {
     if (app.isSameDisk(id, target_id)) {
 
