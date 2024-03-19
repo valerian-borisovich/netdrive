@@ -33,6 +33,7 @@
     "semver": "^7.3.5"
   },
   "dependencies": {
+    "terser": "^5.29.2",
     "vite": "^5.1.6"
   }
 }

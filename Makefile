@@ -1,9 +1,27 @@
-.DEFAULT_GOAL := docs
+.DEFAULT_GOAL := build
+# ###
+# #####################################################################################################################
+# ###    Full path of the current script
+#THIS=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || echo $0);
+# ### The directory where current script resides
+#DIR=$(dirname "${THIS}")
+# ###
+#PWD=$(pwd)
+# ###
+#
 
-.PHONY: install
-install:
-	cd ./packages/netdrive
-	npm install
+# all: hooks install build init serve
+# default: init
+
+#default:
+#	@$(MAKE) -s help
+
+.PHONY: setup
+setup:
+	npm install yarn -g
+	npm install pm2 -g
+
+	@echo "\a"
 
 
 .PHONY: clean
@@ -14,12 +32,12 @@ clean:
 
 	rm -rf `find . -type d -name build`
 	rm -rf `find . -type d -name dist`
-	exit 1
 
-	rm -f `find . -type f -name 'package-lock.json' `
+	rm -f `find . -type f -name 'yarn.lock' ` >/dev/null 2>&1
+	rm -f `find . -type f -name 'package-lock.json' `  >/dev/null 2>&1
 	rm -rf `find . -type d -name node_modules`
 
-	exit 1
+#	exit 0
 
 	rm -rf `find . -name __pycache__`
 	rm -f `find . -type f -name '*.py[co]' `
@@ -40,7 +58,8 @@ clean:
 	rm -rf codecov.sh
 	rm -rf coverage.xml
 
-	@echo ""
+	@echo "\a"
+
 
 .PHONY: docs
 docs:
@@ -48,20 +67,31 @@ docs:
 	@echo "- Serving documentation -"
 	@echo "-------------------------"
 
-	pdm run mkdocs serve
+	mkdocs serve
 
-	@echo ""
+	@echo "\a"
+
 
 .PHONY: build
 b build:
+	@$(MAKE) -s clean
+	@$(MAKE) -s setup
+
 	@echo "--------------------------"
 	@echo "- Building -"
 	@echo "--------------------------"
 
 	yarn install
-#	npm i && npm audit fix --force
+	yarn build-web
+
+	mkdir -p ./packages/netdrive/theme/default
+	mkdir -p ./packages/netdrive/plugins
+
+	cp -r ./packages/netdrive-web/dist/* ./packages/netdrive/theme/default
+	cp -r ./packages/netdrive-plugin/lib/* ./packages/netdrive/plugins
 
 	@echo "\a"
+
 
 .PHONY: build-web
 bw build-web:
@@ -77,6 +107,8 @@ bw build-web:
 	npm run dev
 	npm run build
 
+	@echo "\a"
+
 
 .PHONY: build-dav
 bd build-dav:
@@ -90,6 +122,8 @@ bd build-dav:
 	npm run build
 	@cd ../..
 
+	@echo "\a"
+
 
 .PHONY: s start
 s start:
@@ -97,4 +131,12 @@ s start:
 	@echo "- Start -"
 	@echo "--------------------------"
 
-	@node ./packages/netdrive/app.js
+#	@node ./packages/netdrive/app.js
+
+	@cd ./packages/netdrive
+
+	pm2 start app.js --name netdrive-next
+	pm2 save
+	pm2 startup
+
+	@echo "\a"

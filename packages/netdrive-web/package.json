@@ -1,6 +1,8 @@
 {
   "name": "@netdrive/web",
   "version": "0.2.0",
+  "repository": "https://github.com/valerian-borisovich/netdrive",
+  "license": "MIT",
   "scripts": {
     "setup": "npm install vite && npm audit fix --force",
     "dev": "vite",
@@ -11,10 +13,9 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
     "ant-design-vue": "2.x",
-    "axios": "^0.21.0",
+    "axios": "^1.6.8",
     "plyr": "^3.6.8",
     "store2": "^2.12.0",
-    "vite": "latest",
     "vue": "3.x",
     "vue-router": "4.x",
     "vuex": "4.x",
@@ -32,11 +33,11 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.9.0",
-    "fs-extra": "^11.2.0",
     "less": "^4.1.1",
     "minimist": "^1.2.5",
     "prettier": "latest",
     "typescript": "^4.5.7",
+    "terser": "latest",
     "vite": "latest",
     "vue-eslint-parser": "^7.6.0",
     "vue-tsc": "^0.0.24"
