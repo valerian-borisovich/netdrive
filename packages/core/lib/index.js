@@ -1,17 +1,10 @@
 const path = require('path')
-
 const qs = require('querystring')
-
 const { URL } = require('url')
-
 const utils = require('./utils')
-
 const request = require('./request')
-
 const createDriver = require('./driver')
-
 const { createRectifier, createReadStream } = require('./rectifier')
-
 const { isFunction, isClass, createCache } = utils
 
 const injectFunctions = (netdrive, protocol) => {
@@ -109,11 +102,8 @@ const chain =
 
 module.exports = async (options) => {
   const resources = {}
-
   const config = options.config || {}
-
   const cache = options.cache || createCache()
-
   const lifecycles = {}
 
   const getDrivers = () => {

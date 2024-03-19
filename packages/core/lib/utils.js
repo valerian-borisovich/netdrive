@@ -1,19 +1,12 @@
 const mimeParse = require('mime')
-
 const YAML = require('yaml')
-
 const isType = (type) => (obj) => Object.prototype.toString.call(obj) === `[object ${type}]`
-
 const isArray = isType('Array')
-
 const isObject = isType('Object')
-
 const isString = isType('String')
-
 const isDate = isType('Date')
 
 exports.isClass = (fn) => typeof fn == 'function' && /^\s*class/.test(fn.toString())
-
 exports.base64 = {
   encode: (v) => Buffer.from(v).toString('base64'),
   decode: (v) => Buffer.from(v, 'base64').toString(),
@@ -21,7 +14,6 @@ exports.base64 = {
 
 exports.btoa = (v) => Buffer.from(v).toString('base64')
 exports.atob = (v) => Buffer.from(v, 'base64').toString()
-
 exports.isFunction = (fn) => typeof fn == 'function'
 
 const datetime = (exports.datetime = (date, expr = 'iso') => {

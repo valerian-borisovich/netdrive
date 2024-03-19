@@ -32,13 +32,14 @@ clean:
 
 	rm -rf `find . -type d -name build`
 	rm -rf `find . -type d -name dist`
-
+	rm -rf `find . -type d -name node_modules`
+	rm -rf `find . -type d -name cache`
 	rm -f `find . -type f -name 'yarn.lock' ` >/dev/null 2>&1
 	rm -f `find . -type f -name 'package-lock.json' `  >/dev/null 2>&1
-	rm -rf `find . -type d -name node_modules`
+	rm -rf ./packages/server/theme
+	rm -rf ./packages/server/plugins
 
 #	exit 0
-
 	rm -rf `find . -name __pycache__`
 	rm -f `find . -type f -name '*.py[co]' `
 	rm -f `find . -type f -name '*.rej' `
@@ -84,11 +85,11 @@ b build:
 	yarn install
 	yarn build-web
 
-	mkdir -p ./packages/netdrive/theme/default
-	mkdir -p ./packages/netdrive/plugins
+	mkdir -p ./packages/server/theme/default
+	mkdir -p ./packages/server/plugins
 
-	cp -r ./packages/netdrive-web/dist/* ./packages/netdrive/theme/default
-	cp -r ./packages/netdrive-plugin/lib/* ./packages/netdrive/plugins
+	cp -r ./packages/web/dist/* ./packages/server/theme/default
+	cp -r ./packages/plugin/lib/* ./packages/server/plugins
 
 	@echo "\a"
 
@@ -99,10 +100,10 @@ bw build-web:
 	@echo "- Building web -"
 	@echo "--------------------------"
 
-	rm -rf ./packages/netdrive-web/dist
+	rm -rf ./packages/web/dist
 	yarn build-web
 
-	cd ./packages/netdrive-web
+	cd ./packages/web
 #	npm i && npm audit fix --force
 	npm run dev
 	npm run build
@@ -117,7 +118,7 @@ bd build-dav:
 	@echo "--------------------------"
 
 #	npm i && npm audit fix --force
-	@cd ./packages/netdrive-webdav
+	@cd ./packages/webdav
 	@rm -rf ./dist
 	npm run build
 	@cd ../..
@@ -131,11 +132,11 @@ s start:
 	@echo "- Start -"
 	@echo "--------------------------"
 
-#	@node ./packages/netdrive/app.js
+#	@node ./packages/server/app.js
 
-	@cd ./packages/netdrive
+	@cd ./packages/server
 
-	pm2 start app.js --name netdrive-next
+	pm2 start app.js --name netdrive-server
 	pm2 save
 	pm2 startup
 

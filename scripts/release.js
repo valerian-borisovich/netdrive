@@ -9,7 +9,6 @@ const args = require('minimist')(process.argv.slice(2))
 const semver = require('semver')
 const chalk = require('chalk')
 const prompts = require('prompts')
-
 const pkgDir = process.cwd()
 const pkgPath = path.resolve(pkgDir, 'package.json')
 
@@ -21,13 +20,9 @@ const remote = 'origin'
 const pkg = require(pkgPath)
 const pkgName = pkg.name.replace(/^@netdrive\//, '')
 const currentVersion = pkg.version
-
 const isDryRun = args.dry
-
 const skipBuild = args.skipBuild
-
 const skipNpmPublish = args.skipNpmPublish
-
 const commitPath = args['commit-path']
 
 /**

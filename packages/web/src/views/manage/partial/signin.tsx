@@ -25,7 +25,7 @@ export default defineComponent({
             onPressEnter={onEnter}
           />
           <Button class="setting-signin__btn" type="primary" onClick={onEnter}>
-            OK
+            Signin
           </Button>
         </div>
       </div>

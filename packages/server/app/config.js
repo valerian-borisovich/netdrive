@@ -1,7 +1,5 @@
 const path = require('path')
-
 const isPkg = process.pkg
-
 const isDev = process.env.NODE_ENV === 'dev'
 
 if (isPkg) {
@@ -18,9 +16,7 @@ const pluginPath = isDev
 
 module.exports = (appInfo) => ({
   middleware: ['cors', 'koaBody', 'json'],
-
   plugin: ['netdrive', 'webdav', 'guide'],
-
   netdrive: {
     path: path.join(appInfo.baseDir, './package/netdrive/index.js'),
     client: {
@@ -28,14 +24,11 @@ module.exports = (appInfo) => ({
       cacheDir: path.join(isPkg ? process.cwd() : appInfo.baseDir, './cache'),
     },
   },
-
   webdav: {
     path: path.join(appInfo.baseDir, './package/webdav/index.js'),
     client: {
-
     },
   },
-
   guide: {
     path: path.join(appInfo.baseDir, './package/guide/index.js'),
     client: {},

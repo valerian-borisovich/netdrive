@@ -3,20 +3,13 @@
  */
 
 const name = 'NetDriveDrive'
-
 const version = '1.0'
-
 const protocol = 'sld'
-
 const yaml = require('yaml')
-
 const { URL } = require('url')
-
 const crypto = require('crypto')
 
-const md5 = (v) => {
-  return crypto.createHash('md5').update(v).digest('hex')
-}
+const md5 = (v) => {return crypto.createHash('md5').update(v).digest('hex')}
 
 module.exports = (app) => {
   const diskMap = {}

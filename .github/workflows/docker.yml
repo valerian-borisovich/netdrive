@@ -19,21 +19,21 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-      
+
       - name: Pre Build
         run: |
           yarn build-web
-          mkdir -p ./packages/netdrive/theme/default
-          mkdir -p ./packages/netdrive/plugins
-          cp -r ./packages/netdrive-web/dist/* ./packages/netdrive/theme/default
-          cp -r ./packages/netdrive-plugin/lib/* ./packages/netdrive/plugins
+          mkdir -p ./packages/server/theme/default
+          mkdir -p ./packages/server/plugins
+          cp -r ./packages/web/dist/* ./packages/server/theme/default
+          cp -r ./packages/plugin/lib/* ./packages/server/plugins
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -44,9 +44,9 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./packages/netdrive/
+          context: ./packages/server/
           platforms: linux/amd64,linux/arm64
-          file: ./packages/netdrive/Dockerfile
+          file: ./packages/server/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags:  ${{ secrets.DOCKER_HUB_USERNAME }}/netdrive:${{ env.VERSION }}

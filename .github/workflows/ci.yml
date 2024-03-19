@@ -27,17 +27,17 @@ jobs:
             core.exportVariable('VERSION', tag)
       - name: Build
         run: |
-          rm -rf ./packages/netdrive-webdav
+          rm -rf ./packages/webdav
           yarn install
           yarn build-web
-          mkdir -p ./packages/netdrive/theme/default
-          mkdir -p ./packages/netdrive/plugins
-          cp -r ./packages/netdrive-web/dist/* ./packages/netdrive/theme/default
-          cp -r ./packages/netdrive-plugin/lib/* ./packages/netdrive/plugins
+          mkdir -p ./packages/server/theme/default
+          mkdir -p ./packages/server/plugins
+          cp -r ./packages/web/dist/* ./packages/server/theme/default
+          cp -r ./packages/plugin/lib/* ./packages/server/plugins
           yarn build-server
       - name: Release
         run: |
-          cd ./packages/netdrive/build
+          cd ./packages/server/build
           tar --transform='flags=r;s|netdrive-win-x64.exe|netdrive.exe|' -zcvf netdrive_windows_amd64.tar.gz netdrive-win-x64.exe
           tar --transform='flags=r;s|netdrive-macos-x64|netdrive|' -zcvf netdrive_macos_amd64.tar.gz netdrive-macos-x64
           tar --transform='flags=r;s|netdrive-linux-x64|netdrive|' -zcvf netdrive_linux_amd64.tar.gz netdrive-linux-x64

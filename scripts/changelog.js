@@ -1,11 +1,7 @@
 const child_process = require('child_process')
-
 const COMMIT_PATTERN = /^([^)]*)(?:\(([^)]*?)\)|):(.*?(?:\[([^\]]+?)\]|))\s*$/
-
 // const PR_REGEX = /#[1-9][\d]*/g
-
 const SEPARATOR = '===END==='
-
 const TYPES = {
   breaking: 'Breaking Changes',
   feat: 'New Features',

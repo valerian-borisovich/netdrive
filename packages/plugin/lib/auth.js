@@ -18,10 +18,8 @@ module.exports = (app) => {
     let hit = data?.files.find(i => i.name == config.acl_file)
     if (hit) {
       let auth = query?.auth
-
       if (auth) {
         let content
-
         if (cache[hit.id]) {
           content = cache[hit.id]
         } else {
@@ -32,19 +30,15 @@ module.exports = (app) => {
 
         if (content) {
           cache[hit.id] = content
-
           if (authMethods?.[content.type]('' + auth, content.data, app)) {
             return data
           }
         }
-
         return { error: { code: 401, message: 'Invalid password' } }
       } else {
         return { error: { code: 401, message: 'Invalid password' } }
       }
     }
-
     return data
   })
-
 }

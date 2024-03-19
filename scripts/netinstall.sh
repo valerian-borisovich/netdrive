@@ -29,11 +29,11 @@ npm install pm2 -g >/dev/null 2>&1
 
 yarn install >/dev/null 2>&1
 yarn build-web
-mkdir -p ./packages/netdrive/theme/default
-mkdir -p ./packages/netdrive/plugins
-cp -r ./packages/netdrive-web/dist/* ./packages/netdrive/theme/default
-cp -r ./packages/netdrive-plugin/lib/* ./packages/netdrive/plugins
-cd packages/netdrive
+mkdir -p ./packages/server/theme/default
+mkdir -p ./packages/server/plugins
+cp -r ./packages/web/dist/* ./packages/server/theme/default
+cp -r ./packages/plugin/lib/* ./packages/server/plugins
+cd packages/server
 
 pm2 start app.js --name netdrive-next >/dev/null 2>&1
 pm2 save >/dev/null 2>&1

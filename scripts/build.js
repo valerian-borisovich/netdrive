@@ -24,6 +24,6 @@ const cp = async (src, dst) => {
 
 const main = async () => {
   await run(`yarn build-web`)
-  await cp('../packages/netdrive-plugin/lib', '../packages/netdrive/plugins')
-  await run(`pkg ./packages/netdrive/ --output build/netdrive --targets linux-x64,macos-x64,macos-arm64,win-x64`)
+  await cp('../packages/plugin/lib', '../packages/server/plugins')
+  await run(`pkg ./packages/server/ --output build/netdrive --targets linux-x64,macos-x64,macos-arm64,win-x64`)
 }
