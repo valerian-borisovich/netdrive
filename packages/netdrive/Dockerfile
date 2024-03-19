@@ -1,5 +1,5 @@
 FROM node:14-alpine
-LABEL maintainer=reruin
+LABEL maintainer=valerianborisovich
 
 ADD . /netdrive/
 WORKDIR /netdrive

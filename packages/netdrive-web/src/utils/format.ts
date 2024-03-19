@@ -107,6 +107,7 @@ export const saveFile = (data: Blob | string, filename: string): void => {
 
     const link = document.createElement('a')
 
+    // @ts-ignore
     link.href = URL.createObjectURL(blob)
     link.download = filename
 

@@ -1,3 +1,3 @@
-* [Installation](ru/installation.md)
-* [Configuration](ru/configuration.md)
-* [Advance](ru/advance.md)
+* [Установка](ru/installation.md)
+* [Конфигурация](ru/configuration.md)
+* [Дополнительно](ru/advance.md)
