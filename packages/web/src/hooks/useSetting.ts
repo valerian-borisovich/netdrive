@@ -74,7 +74,7 @@ export const useSetting: IUseSetting = (): any => {
       if (resp.status) {
         message.error(resp.msg)
       } else {
-        message.success('操作成功')
+        message.success('Successed !')
       }
     })
   }
@@ -82,13 +82,13 @@ export const useSetting: IUseSetting = (): any => {
   const noop = () => { }
 
   const clearCache = () => {
-    // const hidden = message.loading('正在清除缓存', 0)
+    // const hidden = message.loading('Cache clear', 0)
     request.clearCache().then((resp: any) => {
       // hidden()
       if (resp.status) {
         message.error(resp.msg)
       } else {
-        message.success('操作成功')
+        message.success('Successed !')
       }
     })
   }

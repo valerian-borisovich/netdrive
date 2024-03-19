@@ -26,9 +26,9 @@ setup:
 
 .PHONY: clean
 clean:
-	@echo "---------------------------"
-	@echo "- Cleaning  files -"
-	@echo "---------------------------"
+	@echo "============================================="
+	@echo "- Cleaning  -"
+	@echo "============================================="
 
 	rm -rf `find . -type d -name build`
 	rm -rf `find . -type d -name dist`
@@ -36,8 +36,6 @@ clean:
 	rm -rf `find . -type d -name cache`
 	rm -f `find . -type f -name 'yarn.lock' ` >/dev/null 2>&1
 	rm -f `find . -type f -name 'package-lock.json' `  >/dev/null 2>&1
-	rm -rf ./packages/server/theme
-	rm -rf ./packages/server/plugins
 
 #	exit 0
 	rm -rf `find . -type d -name __pycache__`
@@ -76,18 +74,25 @@ docs:
 .PHONY: build
 b build:
 	@$(MAKE) -s clean
-	@$(MAKE) -s setup
+	@rm -rf ./packages/server/theme
+	@rm -rf ./packages/server/plugins
+	@rm -rf ./packages/web/dist
+	@rm -rf ./packages/webdav/dist
 
-	@echo "--------------------------"
-	@echo "- Building -"
-	@echo "--------------------------"
+	@echo "============================================="
+	@echo "               - Building -"
+	@echo "============================================="
 
 	yarn install
+#	@$(MAKE) -s setup
+
+	@$(MAKE) -s build-webdav
+
+#	@$(MAKE) -s build-web
 	yarn build-web
 
 	mkdir -p ./packages/server/theme/default
 	mkdir -p ./packages/server/plugins
-
 	cp -r ./packages/web/dist/* ./packages/server/theme/default
 	cp -r ./packages/plugin/lib/* ./packages/server/plugins
 
@@ -96,48 +101,48 @@ b build:
 
 .PHONY: build-web
 bw build-web:
-	@echo "--------------------------"
-	@echo "- Building web -"
-	@echo "--------------------------"
+	@echo "============================================="
+	@echo "            - Building web -"
+	@echo "============================================="
 
-	rm -rf ./packages/web/dist
+	@rm -rf ./packages/web/dist
 	yarn build-web
 
-	cd ./packages/web
+#	cd ./packages/web
 #	npm i && npm audit fix --force
-	npm run dev
-	npm run build
+#	npm run dev
+#	npm run build
+#	cd ../..
 
 	@echo "\a"
 
 
-.PHONY: build-dav
-bd build-dav:
-	@echo "--------------------------"
-	@echo "- Building dav -"
-	@echo "--------------------------"
+.PHONY: build-webdav
+bd build-webdav:
+	@echo "============================================="
+	@echo "           - Building WebDAV -"
+	@echo "============================================="
 
-#	npm i && npm audit fix --force
-	@cd ./packages/webdav
-	@rm -rf ./dist
-	npm run build
-	@cd ../..
+	cd ./packages/webdav
+#	@npm run build
+	rm -rf ./packages/webdav/dist
+	tsc -p ./packages/webdav
+	cd ../..
 
 	@echo "\a"
 
 
 .PHONY: s start
 s start:
-	@echo "--------------------------"
-	@echo "- Start -"
-	@echo "--------------------------"
+	@echo "============================================="
+	@echo "               - Start -"
+	@echo "============================================="
 
-#	@node ./packages/server/app.js
+	node ./packages/server/app.js
 
-	@cd ./packages/server
-
-	pm2 start app.js --name netdrive-server
-	pm2 save
-	pm2 startup
+#	@cd ./packages/server
+#	pm2 start app.js --name netdrive-server
+#	pm2 save
+#	pm2 startup
 
 	@echo "\a"

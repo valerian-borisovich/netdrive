@@ -1,4 +1,4 @@
-import { Modal } from 'ant-design-vue'
+import { Modal } from 'ant-desubscribesign-vue'
 import { createVNode } from 'vue'
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 

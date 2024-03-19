@@ -19,7 +19,6 @@ export default defineComponent({
     const { loading, files, error, setPath, paths } = useDisk()
     const [mediaId, setMediaData] = usePlayer()
     const { loginState } = useSetting()
-
     const onClick = (data: IFile) => {
       if (data.type == 'folder') {
         setPath(data)

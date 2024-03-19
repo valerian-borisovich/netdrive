@@ -8,9 +8,9 @@ export default defineComponent({
 
     const modeLabel = computed((): string => {
       const mode = store.state.app
-      if (mode == 0) return '直连'
-      else if (mode == 1) return '智能路由'
-      else if (mode == 2) return '全局'
+      if (mode == 0) return 'Direct'
+      else if (mode == 1) return 'SmartRoute'
+      else if (mode == 2) return 'Global'
       else return ''
     })
 
@@ -21,9 +21,9 @@ export default defineComponent({
     return (
       <a-dropdown trigger={['click']}>
         <a-menu class="no-drag" slot="overlay" on-click={handleChangeMode}>
-          <a-menu-item key={0}>直连</a-menu-item>
-          <a-menu-item key={1}>智能路由</a-menu-item>
-          <a-menu-item key={2}>全局</a-menu-item>
+          <a-menu-item key={0}>Direct</a-menu-item>
+          <a-menu-item key={1}>SmartRoute</a-menu-item>
+          <a-menu-item key={2}>Global</a-menu-item>
         </a-menu>
         <a>{modeLabel}</a>
       </a-dropdown>

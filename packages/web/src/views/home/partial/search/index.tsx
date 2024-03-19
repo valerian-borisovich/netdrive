@@ -14,12 +14,8 @@ export default defineComponent({
   setup(props, ctx) {
     const visible = ref(false)
     const key = ref('')
-
-    const setModalVisible = () => {
-      visible.value = false
-    }
-
+    const setModalVisible = () => { visible.value = false }
     const onSearch = () => { }
-    return () => <InputSearch v-model={[key.value, 'value']} placeholder="搜索内容" onSearch={onSearch} />
+    return () => <InputSearch v-model={[key.value, 'value']} placeholder="search" onSearch={onSearch} />
   },
 })

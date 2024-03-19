@@ -7,7 +7,6 @@ import { useSetting } from '@/hooks/useSetting'
 export default defineComponent({
   setup() {
     const { getConfig } = useSetting()
-
     const token = ref('')
     const onEnter = () => {
       getConfig(token.value)
@@ -21,7 +20,7 @@ export default defineComponent({
             type="password"
             value={token.value}
             onChange={(e) => (token.value = e.target.value)}
-            placeholder="password"
+            placeholder="enter password"
             onPressEnter={onEnter}
           />
           <Button class="setting-signin__btn" type="primary" onClick={onEnter}>

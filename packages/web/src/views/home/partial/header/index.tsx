@@ -38,7 +38,7 @@ export default defineComponent({
         maskClosable: true,
         content: (
           <div>
-            <InputSearch enter-button placeholder="搜索内容" onSearch={onSearch} />
+            <InputSearch enter-button placeholder="search" onSearch={onSearch} />
           </div>
         ),
       })
@@ -49,7 +49,7 @@ export default defineComponent({
     return () => (
       <div class="drive-header">
         <div onClick={navHome} class="drive-header__name">
-          {config.title || 'Netdrive'}
+          {config.title || 'NetDrive'}
         </div>
         <div class="drive-action">
           {/* <Icon class="drive-action-search" type="icon-search" onClick={onToggleSearch} /> */}

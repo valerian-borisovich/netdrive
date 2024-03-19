@@ -15,7 +15,7 @@ const valueDisplay = (value: any, type: string) => {
     const len = value.length
     const nodes = value.slice(0, 3).map((i: string) => <div>{i}</div>)
     if (len > 3) {
-      nodes.push(<div>等{len}项</div>)
+      nodes.push(<div>wait {len} </div>)
     }
     return nodes
   }
@@ -45,8 +45,7 @@ export default defineComponent({
       const modifier = ref(isSecret ? '' : config[code])
       const handleChange = (e: any) => modifier.value = e.target.value
 
-      //modal 下的input v-model 有bug
-      Modal.confirm({
+      const modal = Modal.confirm({
         title: label,
         class: 'fix-modal--narrow-padding',
         content: (
@@ -56,6 +55,7 @@ export default defineComponent({
         ),
         onOk: () => {
           setConfig({ [code]: modifier.value })
+          modal.destroy()
         },
       })
     }
@@ -64,7 +64,7 @@ export default defineComponent({
       const modifier = ref(config[code].join('\n'))
       const handleChange = (e: any) => modifier.value = e.target.value
 
-      Modal.confirm({
+      const modal = Modal.confirm({
         title: label,
         class: 'fix-modal--narrow-padding',
         content: (
@@ -74,6 +74,7 @@ export default defineComponent({
         ),
         onOk: () => {
           setConfig({ [code]: modifier.value.split('\n').filter(Boolean) })
+          modal.destroy()
         },
       })
     }

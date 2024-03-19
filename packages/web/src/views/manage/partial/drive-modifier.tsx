@@ -77,9 +77,7 @@ export default defineComponent({
 
   setup(props, ctx) {
     const { config } = useSetting()
-
     const formRef = ref()
-
     const drivers: Array<Driver> = [
       {
         protocol: 'other',
@@ -91,23 +89,18 @@ export default defineComponent({
 
     // const [rules, clearRules] = useObject()
     const driverTypes = drivers.map((i: Driver) => ({ value: i.protocol, label: i.name }))
-
     const [formState, clearFormState]: [UnwrapRef<FormState>, any] = useObject({
       name: props.defaultValue.name,
       protocol: props.defaultValue.path.protocol,
     })
-
     const rules: Ref<any> = ref({})
-
     const formItems: Ref<any> = ref([])
-
     const onSave = () => {
       formRef.value
         .validate()
         .then(() => {
           const { name, ...path } = toRaw(formState)
           console.log('formState', formState, path)
-
           ctx.emit('update', { name, path })
         })
         .catch((err: any) => {
@@ -124,9 +117,7 @@ export default defineComponent({
 
     watchEffect(() => {
       const defaultValues = { ...toRaw(formState), ...props.defaultValue.path }
-
       formRef.value?.clearValidate()
-
       const innerRule = {
         name: [{ required: true, message: 'required' }],
         protocol: [{ required: true, message: 'required' }],

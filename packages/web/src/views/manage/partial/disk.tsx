@@ -30,7 +30,7 @@ export default defineComponent({
           </div>
         ),
         onOk: () => {
-          // destroy()
+          modal.destroy()
         },
       })
     }

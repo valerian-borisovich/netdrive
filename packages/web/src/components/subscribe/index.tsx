@@ -30,12 +30,12 @@ export default defineComponent({
           <a-icon type="qrcode" style={{ fontSize: '16px' }} />
         </a-button>
 
-        <Modal title="移动端订阅" centered={true} footer={null} on-cancel={handleClose} visible={visible.value}>
+        <Modal title="Mobile subscribe" centered={true} footer={null} on-cancel={handleClose} visible={visible.value}>
           <div style="text-align:center;">
             <Qrcode content={url} />
             <p style="margin-top:16px;">
               <AppleFilled style="color:#151517;margin-right:5px;font-size:15px;" />
-              打开小火箭扫码订阅
+              Scan QR-code
             </p>
           </div>
         </Modal>
