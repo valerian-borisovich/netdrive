@@ -2,7 +2,7 @@ import { UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
-import path from 'path'
+import path from 'fs-extra'
 
 const root = path.resolve(__dirname, './src')
 

@@ -1,6 +1,6 @@
 {
   "name": "netdrive",
-  "version": "0.3.15",
+  "version": "0.3.17",
   "bin": "app.js",
   "repository": "https://github.com/valerian-borisovich/netdrive",
   "license": "MIT",
@@ -16,7 +16,7 @@
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@netdrive/core": "^0.1",
-    "@netdrive/webdav": "^0.1",
+    "@netdrive/webdav": "^0.2",
     "bonjour": "^3.5.0",
     "etag": "^1.8.1",
     "global": "^4.4.0",

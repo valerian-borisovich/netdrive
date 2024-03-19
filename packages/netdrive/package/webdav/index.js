@@ -93,20 +93,12 @@ const createDriver = (driver, { proxy, baseUrl } = {}) => {
       stream.pause?.()
 
       let paths = parsePath(path)
-
       let name = paths.pop()
-
       let data = await driver.stat({ paths })
-
       let existData = await driver.stat({ paths: [...paths, name] })
 
-      if (existData) {
-        await driver.rm(existData.id)
-      }
-
-      if (!data.id) {
-        return { error: { code: 404 } }
-      }
+      if (existData) { await driver.rm(existData.id) }
+      if (!data.id) { return { error: { code: 404 } } }
       let ret = await driver.upload(data.id, { name, size, stream })
       if (!ret) {
         return {
@@ -115,19 +107,21 @@ const createDriver = (driver, { proxy, baseUrl } = {}) => {
       } else {
         return ret
       }
-
     },
+
     async mkdir(path) {
       let paths = parsePath(path)
       let name = paths.pop()
       let parentData = await driver.stat({ paths })
       return await driver.mkdir(parentData.id, name)
     },
+
     async rm(path) {
       let paths = parsePath(path)
       let data = await driver.stat({ paths })
       return await driver.rm(data.id)
     },
+
     async mv(path, targetPath) {
       if (path === targetPath) {
         return {
@@ -137,7 +131,6 @@ const createDriver = (driver, { proxy, baseUrl } = {}) => {
       let paths = parsePath(path)
       let targetPaths = parsePath(targetPath)
       let data = await driver.stat({ paths })
-
       let srcName = paths[paths.length - 1], dstName = targetPaths[targetPaths.length - 1]
 
       if (!data?.id) {
@@ -149,9 +142,7 @@ const createDriver = (driver, { proxy, baseUrl } = {}) => {
       let target = await safeCall(driver.stat({ paths: targetPaths }))
 
       if (target?.id) {
-
         let enableMove = await driver.isSameDisk(data.id, target.id)
-
         if (!enableMove) {
           return {
             error: { code: 501 }
@@ -173,7 +164,7 @@ const createDriver = (driver, { proxy, baseUrl } = {}) => {
           }
         }
       }
-      // 不存在目标 
+      // 不存在目标
       else {
         // 目标上级
         let targetParent = await safeCall(driver.stat({ paths: targetPaths.slice(0, -1) }))
@@ -191,16 +182,13 @@ const createDriver = (driver, { proxy, baseUrl } = {}) => {
               if (dstName && dstName != srcName) options.name = dstName
               await driver.mv(data.id, targetParent.id, options)
             }
-
             return { status: 201 }
           }
         }
-
         return {
           error: { code: 409 }
         }
       }
-
     }
   }
   return (cmd, ...options) => commands[cmd]?.(...options)

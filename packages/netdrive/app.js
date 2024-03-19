@@ -45,7 +45,7 @@ const getIpv4 = () => {
 
 const onListening = () => {
   console.log(new Date().toISOString())
-  console.log('Sharelist Server is running at http://' + getIpv4() + ':' + port + '/')
+  console.log('NetDrive Server is running at http://' + getIpv4() + ':' + port + '/')
 }
 
 if (!fs.existsSync('./cache')) {

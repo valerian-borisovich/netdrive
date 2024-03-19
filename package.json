@@ -9,14 +9,14 @@
   },
   "scripts": {
     "dev": "cd packages/netdrive && yarn dev",
-    "dev-web": "cd packages/netdrive-web && yarn dev",
     "build-server": "cd packages/netdrive && yarn pkg",
     "build-web": "cd packages/netdrive-web && yarn build",
+    "dev-web": "cd packages/netdrive-web && yarn dev",
+    "ci": "cd packages/netdrive && yarn release",
+    "pkg": "cd packages/netdrive && yarn pkg-demo",
+    "changelog": "node scripts/changelog.js",
     "build": "node scripts/build.js",
     "release": "node scripts/release.js",
-    "ci": "cd packages/netdrive && yarn release",
-    "changelog": "node scripts/changelog.js",
-    "pkg": "cd packages/netdrive && yarn pkg-demo",
     "lint": "eslint --ext .ts packages/*/src/**.ts",
     "format": "prettier --write --parser typescript \"packages/**/*.ts?(x)\""
   },
@@ -31,5 +31,8 @@
     "pkg": "latest",
     "prompts": "^2.4.1",
     "semver": "^7.3.5"
+  },
+  "dependencies": {
+    "vite": "^5.1.6"
   }
 }

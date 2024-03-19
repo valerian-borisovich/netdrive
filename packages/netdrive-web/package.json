@@ -2,6 +2,7 @@
   "name": "@netdrive/web",
   "version": "0.2.0",
   "scripts": {
+    "setup": "npm install vite && npm audit fix --force",
     "dev": "vite",
     "build": "vite build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path .",
@@ -20,7 +21,7 @@
     "vuex-persistedstate": "^4.x"
   },
   "devDependencies": {
-    "@types/node": "^16.17.0",
+    "@types/node": "^18.19.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "@vitejs/plugin-legacy": "latest",
@@ -31,9 +32,10 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.9.0",
+    "fs-extra": "^11.2.0",
     "less": "^4.1.1",
     "minimist": "^1.2.5",
-    "prettier": "^2.3.0",
+    "prettier": "latest",
     "typescript": "^4.5.7",
     "vite": "latest",
     "vue-eslint-parser": "^7.6.0",
