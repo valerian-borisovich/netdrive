@@ -10,7 +10,6 @@ import './index.less'
 export default defineComponent({
   setup() {
     const { setQuery } = useUrlState()
-
     const token = ref('')
     const onEnter = () => {
       setQuery({ auth: token.value })

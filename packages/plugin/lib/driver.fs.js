@@ -127,7 +127,7 @@ const move = async (src, dst, { overwrite, copy, recursive } = { overwrite: fals
         // TODO check same folder in dst
         fs.renameSync(src, join(dst, srcName))
       }
-      // src is file & dst is NOT a folder , check override 
+      // src is file & dst is NOT a folder , check override
       else {
         if (!override) {
           throw { code: 409 }
@@ -151,15 +151,13 @@ const createError = (e) => {
 class FileSystem {
   constructor(app) {
     this.name = 'LocalFile'
-    this.label = '本地文件'
+    this.label = 'Local path'
     this.mountable = true
     this.cache = false
-
     this.version = '1.0'
     this.protocol = 'file'
-
     this.guide = [
-      { key: 'path', label: '目录地址', type: 'string', required: true },
+      { key: 'path', label: 'path', type: 'string', required: true },
       // { key: 'key', label: '相对目录', type: 'string', value: '', options: [{ value: '', label: '否' }, { value: '.', label: '是' }], required: false },
     ]
   }
@@ -168,28 +166,19 @@ class FileSystem {
     this.app = app
   }
 
-  encode(data) {
-    return `${this.protocol}://${data.path}`
-  }
+  encode(data) {return `${this.protocol}://${data.path}` }
 
   decode(id) {
     let p = id.replace(`${this.protocol}://`, '').replace(/^\/+/, '/')
-
     if (p.startsWith('/.')) p = parseRelativePath(p.substring(1))
-
     return { protocol: this.protocol, path: p }
   }
 
-  parsePath(p) {
-    return this.decode(p)?.path
-  }
+  parsePath(p) { return this.decode(p)?.path }
 
   async list(id) {
-
     let filepath = ospath(id)
-
     let stat = fs.statSync(filepath)
-
     if (stat.isDirectory()) {
       const files = []
       fs.readdirSync(filepath).forEach((filename) => {
@@ -204,7 +193,6 @@ class FileSystem {
         let obj = {
           id: dir,
           name: filename,
-
         }
         if (stat) {
           if (stat.isDirectory()) {
@@ -224,7 +212,6 @@ class FileSystem {
       })
       return files
     }
-
     return this.app.error({ message: 'path is not exist' })
   }
 
@@ -248,11 +235,7 @@ class FileSystem {
   mkdir(id, name) {
     let filepath = ospath(id)
     let target = join(filepath, name)
-
-    if (fs.existsSync(target) == false) {
-      fs.mkdirSync(target)
-    }
-
+    if (fs.existsSync(target) == false) {fs.mkdirSync(target) }
     return { id: normalize(id + '/' + name), name }
   }
 
@@ -277,7 +260,6 @@ class FileSystem {
       console.log(e)
       return createError(e)
     }
-
     return { id: `${dir + '/' + name}`, name }
   }
 
@@ -285,21 +267,17 @@ class FileSystem {
    * move
    * @param {*} id file or folder ID
    * @param {string} target folder ID
-   * @returns 
+   * @returns
    */
   async mv(id, target) {
-
     let filepath = ospath(this.parsePath(id))
     let targetpath = ospath(this.parsePath(target))
-
     let dst = join(targetpath, basename(id))
-
     try {
       fs.renameSync(filepath, dst)
     } catch (e) {
       return createError(e)
     }
-
     return { id: dst }
   }
 

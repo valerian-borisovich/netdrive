@@ -40,7 +40,7 @@ clean:
 	rm -rf ./packages/server/plugins
 
 #	exit 0
-	rm -rf `find . -name __pycache__`
+	rm -rf `find . -type d -name __pycache__`
 	rm -f `find . -type f -name '*.py[co]' `
 	rm -f `find . -type f -name '*.rej' `
 	rm -rf `find . -type d -name '*.egg-info' `

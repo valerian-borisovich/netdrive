@@ -13,10 +13,7 @@ const routes: Array<RouteRecordRaw> = [
     component: defineAsyncComponent(() => import('../views/manage')),
   },
 ]
-console.log('here')
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-})
+
+const router = createRouter({ history: createWebHistory(), routes,})
 
 export default router

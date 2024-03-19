@@ -4,7 +4,6 @@
   "repository": "https://github.com/valerian-borisovich/netdrive",
   "license": "MIT",
   "scripts": {
-    "setup": "npm install vite && npm audit fix --force",
     "dev": "vite",
     "build": "vite build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path .",

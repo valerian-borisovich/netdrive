@@ -18,13 +18,9 @@ import { useTitle } from '@/hooks/useHooks'
 export default defineComponent({
   setup() {
     const { loginState, isLoading, signout, exportConfig, reload, clearCache } = useSetting()
-
     const confirmClearCache = useConfirm(clearCache, 'Confirm', 'Confirm to clear the cache？')
-
     const confirmSignout = useConfirm(signout, 'Confirm', 'Exit？')
-
-    const confirmReload = useConfirm(reload, 'Confirm', 'Confirm restart？')
-
+    const confirmReload = useConfirm(reload, 'Confirm', 'Restart？')
     const tabsSlots = {
       tabBarExtraContent: () => <div style="cursor:pointer;font-size:12px;color:#666;" title="Save config" onClick={exportConfig} ><SaveOutlined style={{ fontSize: '15px', 'marginRight': '6px' }} />Export configuration</div>
     }

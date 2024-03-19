@@ -1,9 +1,6 @@
 const path = require('path')
-
 const fs = require('fs')
-
 const { stat, readdir } = require('fs/promises')
-
 const { isClass, isFunction } = require('./utils')
 
 const loadFile = (filepath) => {
@@ -33,7 +30,6 @@ const getDirPath = (dir, basepath) => {
 
   //app
   lookupDirs.push(path.join(basepath, 'node_modules'))
-
   lookupDirs.push(path.join(process.cwd(), 'node_modules'))
   for (let dir of lookupDirs) {
     dir = path.join(dir, name)
@@ -41,7 +37,6 @@ const getDirPath = (dir, basepath) => {
       return fs.realpathSync(dir)
     }
   }
-
   throw new Error(`Can not find plugin ${name} in "${lookupDirs.join(', ')}"`)
 }
 
@@ -78,26 +73,17 @@ const loadDir = async (dir) => {
 
 const loadUnit = async (dir, basepath, appInfo) => {
   if (dir.path) basepath = dir.path
-
   let dirpath = getDirPath(dir, basepath)
-
   let middleware = await loadDir(path.join(dirpath, 'middleware'))
-
   let service = await loadDir(path.join(dirpath, 'service'))
-
   // let plugins = loadFile(path.join(dirpath, 'plugin.js'))
-
   let plugin = {}, config = {}
-
   // load config
   let app = loadFile(path.join(dirpath, 'config.js'))
-
   if (isFunction(app)) app = app(appInfo)
-
   if (app) {
     config.middleware = app.middleware || []
     config.plugin = app.plugin || []
-
     if (app.middleware) {
       for (let name of app.middleware) {
         if (app[name]) {
@@ -116,13 +102,10 @@ const loadUnit = async (dir, basepath, appInfo) => {
         if (app[name].client) {
           config[name] = app[name].client
         }
-
         let unit = await loadUnit(app[name], dirpath, appInfo)
-
         Object.assign(middleware, unit.middleware)
         Object.assign(config, unit.config)
         Object.assign(plugin, unit.plugin)
-
         plugin[name] = loadFile(app[name].path ? path.join(app[name].path) : app[name].package)
         service[name] = unit.service
 

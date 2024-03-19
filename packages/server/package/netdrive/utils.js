@@ -1,9 +1,6 @@
 
 const ignore = require('ignore')
-
-const isForbiddenPath = (p) => {
-  return false
-}
+const isForbiddenPath = (p) => { return false}
 
 const isIgnorePath = (p = '', config) => {
   p = p.replace(/^\//, '')
@@ -17,20 +14,16 @@ const isProxyPath = (p, config) => {
 
 exports.getFiles = async (netdrive, runtime) => {
   let { config } = netdrive
-
   //使用路径模式，提前排除
   if (runtime.path && isIgnorePath(runtime.path, config)) {
     return { error: { code: 404 } }
   }
-
   if (runtime.path && isForbiddenPath(runtime.path, config)) {
     return { error: { code: 404 } }
   }
-
   if (!config.index_enable) {
     return { error: { code: 403 } }
   }
-
   let data
   try {
     data = await netdrive.list(runtime)
@@ -53,7 +46,6 @@ exports.getFiles = async (netdrive, runtime) => {
 
 exports.getFile = async (netdrive, runtime) => {
   let { config } = netdrive
-
   //使用路径模式，提前排除
   if (runtime.path && isIgnorePath(runtime.path, config)) {
     return { error: { code: 404 } }

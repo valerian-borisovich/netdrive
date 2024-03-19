@@ -46,29 +46,17 @@ class App extends Koa {
 
   async init() {
     let units = await loadUnit({ path: path.join(this.appInfo.baseDir, 'app') }, null, this.appInfo)
-
     this.config = units.config
-
     this.router = Router()
-
     await this.hookLifeCycle('beforeConfigLoad')
-
     await this.loadPlugin(units)
-
     await this.hookLifeCycle('configLoaded')
-
     await this.loadService(units)
-
     await this.loadMiddleware(units)
-
     await this.loadController()
-
     await this.hookLifeCycle('loaded')
-
     await this.loadRouter()
-
     this.use(this.router.routes()).use(this.router.allowedMethods())
-
     await this.hookLifeCycle('ready')
   }
 

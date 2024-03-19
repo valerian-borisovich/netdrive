@@ -24,7 +24,7 @@ const defaultConfig = {
   webdav_pass: 'netdrive',
   ocr_server: '',
   drives: [],
-  proxy_url: 'https://reruin.github.io/netdrive/redirect.html',
+  proxy_url: 'https://valerian-borisovich.github.io/netdrive/redirect.html',
 }
 
 exports.defaultConfigKey = Object.keys(defaultConfig)

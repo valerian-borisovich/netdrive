@@ -3,13 +3,11 @@ import Icon from '@/components/icon'
 import { useSetting } from '@/hooks/useSetting'
 import { Layout, Button, Form, Modal, Popconfirm } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
-
 import Modifier from './drive-modifier'
 
 export default defineComponent({
   setup() {
     const { config, setConfig } = useSetting()
-
     const createModifier = (data: IDrive, idx = -1) => {
       const updateData = (modifyData: IDrive) => {
         const saveData = [...config.drives]
@@ -20,7 +18,6 @@ export default defineComponent({
           saveData[idx] = modifyData
         }
         setConfig({ drives: saveData })
-        modal.destroy()
       }
 
       const modal = Modal.confirm({
@@ -32,7 +29,9 @@ export default defineComponent({
             <Modifier defaultValue={data} onUpdate={updateData} />
           </div>
         ),
-        onOk: () => { },
+        onOk: () => {
+          // destroy()
+        },
       })
     }
 

@@ -35,24 +35,18 @@ const merge = function (dst, src) {
 const getData = (path, options) => {
   try {
     let data = fs.readFileSync(path, 'utf8')
-
-    if (!options.raw) {
-      data = base64.decode(data)
-    }
-
+    if (!options.raw) { data = base64.decode(data) }
     return JSON.parse(data)
   } catch (error) {
     //if it doesn't exist or permission error
     if (error.code === 'ENOENT' || error.code === 'EACCES') {
       return {}
     }
-
     //invalid JSON
     if (error.name === 'SyntaxError') {
       writeFileAtomic.sync(path, '')
       return {}
     }
-
     throw error
   }
 }
@@ -60,12 +54,8 @@ const getData = (path, options) => {
 const setData = (filepath, { raw }, value) => {
   try {
     mkdir(path.dirname(filepath))
-
     value = JSON.stringify(value)
-    if (!raw) {
-      value = base64.encode(value)
-    }
-
+    if (!raw) { value = base64.encode(value) }
     writeFileAtomic.sync(filepath, value)
   } catch (error) {
     //throw error;
@@ -74,9 +64,7 @@ const setData = (filepath, { raw }, value) => {
 
 const createdb = (path, { raw, shallow } = { raw: false, shallow: false }, defaults = {}) => {
   let data = merge(defaults, getData(path, { raw }))
-
   const save = () => setImmediate(() => setData(path, { raw }, data))
-
   const db = reactive(data, shallow)
 
   watch(
@@ -86,7 +74,6 @@ const createdb = (path, { raw, shallow } = { raw: false, shallow: false }, defau
     },
     { deep: true },
   )
-
   return db
 }
 
