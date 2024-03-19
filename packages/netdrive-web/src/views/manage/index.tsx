@@ -38,7 +38,7 @@ export default defineComponent({
       <div class="setting">
         <div class="settiing-header">
           {/* <LeftOutlined class="settiing-header__back" style={{ fontSize: '20px' }} /> */}
-          <div>设置</div>
+          <div>Settings</div>
           {loginState.value == 1 ? (
             <div class="setting-header__actions">
               <DeleteOutlined onClick={confirmClearCache} style={{ fontSize: '18px', marginRight: '16px' }} />
@@ -56,7 +56,7 @@ export default defineComponent({
                   tab: () => (
                     <span>
                       <SettingOutlined />
-                      常规
+                      General
                     </span>
                   ),
                 }}
@@ -67,7 +67,7 @@ export default defineComponent({
                   tab: () => (
                     <span>
                       <DatabaseOutlined />
-                      挂载盘
+                      Drive
                     </span>
                   ),
                 }}

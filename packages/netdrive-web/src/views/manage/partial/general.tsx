@@ -9,7 +9,7 @@ import { useSetting } from '@/hooks/useSetting'
 import { Switch, Modal, Input } from 'ant-design-vue'
 const { TextArea } = Input
 const valueDisplay = (value: any, type: string) => {
-  if (type == 'boolean') return Boolean(value) ? '启用' : '禁用'
+  if (type == 'boolean') return Boolean(value) ? 'on' : 'off'
   else if (type == 'string') return value
   else if (type == 'array') {
     const len = value.length
@@ -24,20 +24,20 @@ const valueDisplay = (value: any, type: string) => {
 export default defineComponent({
   setup() {
     const fields = [
-      { code: 'token', label: '后台密码', type: 'string', secret: true },
-      { code: 'title', label: '网站标题', type: 'string' },
-      { code: 'index_enable', label: '目录索引', type: 'boolean' },
-      { code: 'expand_single_disk', label: '展开单一挂载盘', type: 'boolean' },
-      { code: 'anonymous_download_enable', label: '允许下载', type: 'boolean' },
-      { code: 'fast_mode', label: '快速模式', type: 'boolean' },
-      { code: 'ignores', label: '忽略路径', type: 'array' },
-      { code: 'acl_file', label: '加密文件名', type: 'string' },
-      { code: 'webdav_path', label: 'WebDAV 路径', type: 'string' },
-      { code: 'webdav_proxy', label: 'WebDAV 代理', type: 'boolean' },
-      { code: 'webdav_user', label: 'WebDAV 用户名', type: 'string' },
-      { code: 'webdav_pass', label: 'WebDAV 密码', type: 'string' },
-      { code: 'script', label: '自定义脚本', type: 'string' },
-      { code: 'style', label: '自定义样式', type: 'string' },
+      { code: 'token', label: 'Token', type: 'string', secret: true },
+      { code: 'title', label: 'Title', type: 'string' },
+      { code: 'index_enable', label: 'Index enable', type: 'boolean' },
+      { code: 'expand_single_disk', label: 'Expand single disk', type: 'boolean' },
+      { code: 'anonymous_download_enable', label: 'Anonymous download enable', type: 'boolean' },
+      { code: 'fast_mode', label: 'Fast mode', type: 'boolean' },
+      { code: 'ignores', label: 'Ignores', type: 'array' },
+      { code: 'acl_file', label: 'ACL', type: 'string' },
+      { code: 'webdav_path', label: 'WebDAV path', type: 'string' },
+      { code: 'webdav_proxy', label: 'WebDAV proxy', type: 'boolean' },
+      { code: 'webdav_user', label: 'WebDAV username', type: 'string' },
+      { code: 'webdav_pass', label: 'WebDAV password', type: 'string' },
+      { code: 'script', label: 'Script', type: 'string' },
+      { code: 'style', label: 'Style', type: 'string' },
     ]
     const { config, setConfig } = useSetting()
 
@@ -51,7 +51,7 @@ export default defineComponent({
         class: 'fix-modal--narrow-padding',
         content: (
           <div>
-            <TextArea defaultValue={modifier.value} onChange={handleChange} placeholder="请输入" />
+            <TextArea defaultValue={modifier.value} onChange={handleChange} placeholder="please enter" />
           </div>
         ),
         onOk: () => {
@@ -69,7 +69,7 @@ export default defineComponent({
         class: 'fix-modal--narrow-padding',
         content: (
           <div>
-            <TextArea defaultValue={modifier.value} onChange={handleChange} style={{ height: '150px' }} placeholder="请输入" />
+            <TextArea defaultValue={modifier.value} onChange={handleChange} style={{ height: '150px' }} placeholder="please enter" />
           </div>
         ),
         onOk: () => {
@@ -91,9 +91,9 @@ export default defineComponent({
               {i.type == 'boolean' ? (
                 <Switch checked={config[i.code]} onChange={(e) => setConfig({ [i.code]: e })} />
               ) : i.type == 'string' ? (
-                <a onClick={() => createInputModifier(i.label, i.code, i.secret)}>修改</a>
+                <a onClick={() => createInputModifier(i.label, i.code, i.secret)}>Change</a>
               ) : i.type == 'array' ? (
-                <a onClick={() => createListModifier(i.label, i.code)}>修改</a>
+                <a onClick={() => createListModifier(i.label, i.code)}>Change</a>
               ) : null}
             </div>
           </div>

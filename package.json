@@ -18,7 +18,7 @@
     "changelog": "node scripts/changelog.js",
     "pkg": "cd packages/netdrive && yarn pkg-demo",
     "lint": "eslint --ext .ts packages/*/src/**.ts",
-    "format": "prettier --write --parser typescript \"packages/**/*.ts?(x)\"",
+    "format": "prettier --write --parser typescript \"packages/**/*.ts?(x)\""
   },
   "devDependencies": {
     "chalk": "^4.1.2",

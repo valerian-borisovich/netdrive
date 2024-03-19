@@ -15,7 +15,7 @@ echo -e "\n|  NetDrive is installing ... "
 
 
 echo -e "|\n|  Download NetDrive Package ... "
-wget -O netdrive-main.zip https://github.com/valerian-borisovich/netdrive/archive/refs/heads/master.zip >/dev/null 2>&1
+wget -O netdrive-main.zip https://github.com/valerian-borisovich/netdrive/archive/refs/heads/main.zip >/dev/null 2>&1
 
 unzip -q -o netdrive-main.zip -d ./
 

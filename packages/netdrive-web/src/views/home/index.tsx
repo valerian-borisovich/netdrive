@@ -15,13 +15,9 @@ import { InfoCircleOutlined } from '@ant-design/icons-vue'
 export default defineComponent({
   setup() {
     const { state } = useStore()
-
     const layout = toRef(state.setting, 'layout')
-
     const { loading, files, error, setPath, paths } = useDisk()
-
     const [mediaId, setMediaData] = usePlayer()
-
     const { loginState } = useSetting()
 
     const onClick = (data: IFile) => {
@@ -54,7 +50,7 @@ export default defineComponent({
           <div class="item">
             <div class="item__header">
               <div class="item__meta">
-                <h4 class="item__meta-title">目录ID</h4>
+                <h4 class="item__meta-title">File ID</h4>
                 <div class="item__meta-desc" style="font-size:10px;color:rgba(0,0,0,.5);">{file.extra?.fid}</div>
               </div>
             </div>

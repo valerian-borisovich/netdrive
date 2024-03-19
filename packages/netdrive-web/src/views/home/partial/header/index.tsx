@@ -12,15 +12,12 @@ import { useConfig } from '@/hooks/useSetting'
 export default defineComponent({
   setup() {
     const { state, commit } = useStore()
-
     const { setQuery, setPath } = useUrlState()
-
     const { config } = useConfig()
 
     watch(() => config.title, (nv) => {
       useTitle(nv)
     })
-
 
     const onChangeLayout = () => {
       commit('SET_LAYOUT', state.setting.layout == 'list' ? 'grid' : 'list')
@@ -52,7 +49,7 @@ export default defineComponent({
     return () => (
       <div class="drive-header">
         <div onClick={navHome} class="drive-header__name">
-          {config.title || 'Sharelist'}
+          {config.title || 'Netdrive'}
         </div>
         <div class="drive-action">
           {/* <Icon class="drive-action-search" type="icon-search" onClick={onToggleSearch} /> */}

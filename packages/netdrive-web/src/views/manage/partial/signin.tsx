@@ -21,11 +21,11 @@ export default defineComponent({
             type="password"
             value={token.value}
             onChange={(e) => (token.value = e.target.value)}
-            placeholder="输入口令"
+            placeholder="password"
             onPressEnter={onEnter}
           />
           <Button class="setting-signin__btn" type="primary" onClick={onEnter}>
-            确定
+            OK
           </Button>
         </div>
       </div>

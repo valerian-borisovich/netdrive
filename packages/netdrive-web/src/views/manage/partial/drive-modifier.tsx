@@ -27,7 +27,7 @@ const parseFields = (
   for (const i of fields) {
     formState[i.key] = i.value === undefined ? defaultValues[i.key] : i.value
     if (i.required) {
-      innerRule[i.key] = [{ required: true, message: '必填项 / required' }]
+      innerRule[i.key] = [{ required: true, message: 'required' }]
     }
 
     if (i.options) {
@@ -84,7 +84,7 @@ export default defineComponent({
       {
         protocol: 'other',
         name: 'Other',
-        guide: [{ fields: [{ key: 'raw', label: '自定义内容 / Content', required: true }] }],
+        guide: [{ fields: [{ key: 'raw', label: 'Content', required: true }] }],
       },
       ...config.drivers,
     ]
@@ -128,15 +128,15 @@ export default defineComponent({
       formRef.value?.clearValidate()
 
       const innerRule = {
-        name: [{ required: true, message: '必填项 / required' }],
-        protocol: [{ required: true, message: '必填项 / required' }],
+        name: [{ required: true, message: 'required' }],
+        protocol: [{ required: true, message: 'required' }],
       }
 
       const formItemsNode = [
-        <FormItem label="挂载类型 / protocol" name="protocol">
+        <FormItem label="protocol" name="protocol">
           <Select v-model={[formState.protocol, 'value']} options={driverTypes}></Select>
         </FormItem>,
-        <FormItem label="挂载名称 / name" name="name">
+        <FormItem label="name" name="name">
           <Input v-model={[formState.name, 'value']} />
         </FormItem>,
       ]
@@ -170,11 +170,11 @@ export default defineComponent({
           <FormItem class="fix-form-item--foot">
             <div class="flex flex--between">
               <Button type="primary" onClick={onSave}>
-                确定
+                Save
               </Button>
               {config.guide[formState.protocol] ? (
                 <a target="_blank" href={config.guide[formState.protocol]}>
-                  使用挂载向导
+                  Mount
                 </a>
               ) : null}
             </div>
