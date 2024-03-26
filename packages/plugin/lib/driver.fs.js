@@ -7,9 +7,7 @@ const fs = require('fs')
 const os = require('os')
 const { pipeline } = require('stream')
 const { resolve4 } = require('dns')
-
 const isWinOS = os.platform() == 'win32'
-
 const pipe = (...rest) => new Promise((resolve, reject) => pipeline(...rest, (err) => err ? reject({ message: 'The error occurred during pipe stream' }) : resolve()))
 
 /**
@@ -73,14 +71,12 @@ const move = async (src, dst, { overwrite, copy, recursive } = { overwrite: fals
   // src is folder
   if (srcStats.isDirectory()) {
     const dstStats = await fileStat(dst)
-
     //dst is NOT exist
     if (!dstStats) {
       //check dst parent
       let dstParentStats = await fileStat(dirname(dst))
       //dst parent is not exist
       if (!dstParentStats) throw { code: 404 }
-
       //src is folder & dst is NOT exist & dst parent is folder , rename src
       if (dstParentStats.isDirectory()) {
         fs.renameSync(src, dst)
@@ -88,13 +84,11 @@ const move = async (src, dst, { overwrite, copy, recursive } = { overwrite: fals
         // dst parent is NOT a folder
         throw { code: 409 }
       }
-
     }
     // dst is exist
     else {
       // src is folder & dst is folder, move src into dst folder with its name
       if (dstStats.isDirectory()) {
-
         // TODO check same folder in dst
         fs.renameSync(src, join(dst, srcName))
       }
@@ -107,13 +101,11 @@ const move = async (src, dst, { overwrite, copy, recursive } = { overwrite: fals
   // src is not folder
   else {
     const dstStats = await fileStat(dst)
-
     // dst is not exist
     if (!dstStats) {
       let dstParentStats = await fileStat(dirname(dst))
       //dst parent is not exist
       if (!dstParentStats) throw { code: 404 }
-
       //src is folder & dst is NOT exist & dst parent is folder , rename src
       if (dstParentStats.isDirectory()) {
         fs.renameSync(src, dst)

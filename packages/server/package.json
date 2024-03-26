@@ -7,11 +7,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "cross-env NODE_ENV=dev nodemon app.js -i ./cache",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path .",
-    "pkg": "pkg . --output build/netdrive --targets linux-x64,linux-arm64,linuxstatic-armv7,macos-x64,win-x64 --public-packages '*'",
-    "pkg-local": "pkg . --output build/netdrive",
-    "release": "node ../../scripts/release.js --skipBuild --skipNpmPublish"
+    "clean": "rm -rf ./theme && rm -rf ./plugins && mkdir -p ./theme/default && mkdir -p ./plugins",
+    "build": "npm run clean && cp -r ../web/dist/* ./theme/default && cp -rn ../plugin/lib/* ./plugins"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",

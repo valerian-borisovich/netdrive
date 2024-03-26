@@ -9,7 +9,7 @@ if (isPkg) {
 }
 
 const pluginPath = isDev
-  ? path.join(process.cwd(), '../netdrive-plugin/lib')
+  ? path.join(process.cwd(), '../../plugin/lib')
   : isPkg
     ? path.join(process.cwd(), './plugins')
     : null

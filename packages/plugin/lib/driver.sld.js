@@ -1,8 +1,8 @@
 /*
- * NetDriveDrive 是 netdrive 内置的使用yaml/json描述的网盘系统 , 没有缓存
+ * netdrive yaml/json
  */
 
-const name = 'NetDriveDrive'
+const name = 'NetDrive'
 const version = '1.0'
 const protocol = 'sld'
 const yaml = require('yaml')
@@ -16,7 +16,6 @@ module.exports = (app) => {
 
   const parse = (id) => {
     let data = new URL(id)
-
     let rootId = data.hostname
     let path = data.pathname.replace(/^\/+/, '').split('/')
     return {
@@ -25,7 +24,7 @@ module.exports = (app) => {
     }
   }
 
-  /* 递归生成 索引 id */
+  /* generate recursiv id */
   const createId = (d, rootId) => {
     d.forEach((i, index) => {
       if (isObject(i)) {
@@ -49,16 +48,12 @@ module.exports = (app) => {
   const mount = async (key, data) => {
     if (data) {
       let key = md5(data)
-
       let id = protocol + '://' + key
-
       let resp = { id, type: 'folder', protocol: protocol }
-
       let json = yaml.parse(data)
       json = createId(json, id)
       resp.children = json
       resp.updated_at = Date.now()
-
       diskMap[key] = resp
       return resp
     } else {

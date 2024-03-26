@@ -8,6 +8,7 @@ import Modifier from './drive-modifier'
 export default defineComponent({
   setup() {
     const { config, setConfig } = useSetting()
+
     const createModifier = (data: IDrive, idx = -1) => {
       const updateData = (modifyData: IDrive) => {
         const saveData = [...config.drives]
@@ -18,6 +19,7 @@ export default defineComponent({
           saveData[idx] = modifyData
         }
         setConfig({ drives: saveData })
+        modal.destroy()
       }
 
       const modal = Modal.confirm({
@@ -30,23 +32,14 @@ export default defineComponent({
           </div>
         ),
         onOk: () => {
-          modal.destroy()
+          console.log("onOk")
         },
       })
     }
 
     const onCreateDrive = () => {
-      createModifier(
-        {
-          name: '',
-          path: {
-            protocol: '',
-          },
-        },
-        -1,
-      )
+      createModifier({ name: '', path: { protocol: '', }, }, -1,)
     }
-
     const remove = (data: IDrive, idx: number) => {
       setConfig({ drives: config.drives.filter((_: any, i: number) => i != idx) })
     }
@@ -68,7 +61,7 @@ export default defineComponent({
         <div class="setting-drive__header">
           <Button type="primary" onClick={onCreateDrive}>
             {{
-              default: () => 'Mount',
+              default: () => 'Create',
               icon: () => <PlusOutlined />,
             }}
           </Button>
@@ -85,8 +78,8 @@ export default defineComponent({
               </div>
               <div class="item-action">
                 <a onClick={() => createModifier(i, idx)}>Modify</a>
-                <Popconfirm title="Confirm Remove?" ok-text="OK" cancel-text="Cancel" onConfirm={() => remove(i, idx)}>
-                  <a>Remove</a>
+                <Popconfirm title="Delete?" ok-text="OK" cancel-text="Cancel" onConfirm={() => remove(i, idx)}>
+                  <a>Delete</a>
                 </Popconfirm>
                 <a onClick={() => orderUp(i, idx)}>Up</a>
               </div>

@@ -5,7 +5,6 @@ const fs = require('fs')
 const calculate = require('etag')
 const stat = promisify(fs.stat)
 const mime = require('mime')
-
 const parseQuery = (str) => {
   let params = new URLSearchParams(str)
   let ret = {}
@@ -18,7 +17,6 @@ const parseQuery = (str) => {
   if (params.has('preview')) {
     ret.preview = true
   }
-
   if (params.has('sort')) {
     let s = params.get('sort')
     let r = {}
@@ -30,7 +28,6 @@ const parseQuery = (str) => {
     }
     ret.sort = r
   }
-
   if (params.has('auth')) {
     ret.auth = params.get('auth')
   }
@@ -65,11 +62,8 @@ const getRange = (r, total) => {
 const createHeaders = (stats, { maxage, immutable, range } = { maxage: 0, immutable: false }) => {
   let fileSize = stats.size
   let fileName = stats.name
-
   let headers = {}
-
   headers['Last-Modified'] = new Date(stats.mtime).toUTCString()
-
   headers['Content-Type'] = mime.getType(fileName)
 
   if (range) {
@@ -181,10 +175,10 @@ exports.sendfile = async (ctx, path) => {
 }
 
 /**
- * 
- * @param {ctx} ctx 
- * @param {object} netdrive 
- * @param {object} data 
+ *
+ * @param {ctx} ctx
+ * @param {object} netdrive
+ * @param {object} data
  */
 exports.send = async (ctx, app, data) => {
 

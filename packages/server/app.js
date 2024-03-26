@@ -3,7 +3,6 @@
 /**
  * Module dependencies.
  */
-
 const app = require('./app/index')
 const http = require('http')
 const os = require('os')
@@ -45,7 +44,7 @@ const getIpv4 = () => {
 
 const onListening = () => {
   console.log(new Date().toISOString())
-  console.log('NetDrive server is running at http://' + getIpv4() + ':' + port + '/')
+  console.log('NetDrive app:onListening server at http://' + getIpv4() + ':' + port + '/')
 }
 
 if (!fs.existsSync('./cache')) { fs.mkdirSync('./cache')}

@@ -6,7 +6,6 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const user = computed(() => store.state.user)
-
     const username = computed(() => {
       if (store.state.user) {
         return store.state.user.name.split('@')[0]
@@ -14,7 +13,6 @@ export default defineComponent({
         return ''
       }
     })
-
     return (
       <div class="user-menu">
         <a-avatar class="avatar" size={42} icon="user">

@@ -40,9 +40,9 @@ module.exports = async function (ctx, next) {
   } else {
     render(ctx, `
     <div class="auth">
-      <h3>挂载GoogleDrive</h3>
-      <p>1. 请参考 <a target="_blank" style="font-size:12px;margin-right:5px;color:#337ab7;" href="https://developers.google.com/workspace/guides/create-project">此链接</a>创建项目，获取 Client ID / Client Secret。</p>
-      <p>2. 在下方填写Client ID / Client Secret后，<a target="_blank" style="font-size:12px;margin-right:5px;color:#337ab7;" id="j_code_link"  onclick="directToCodeUrl(this)">点击获取验证code</a>，若出现[Google hasn’t verified this app]，请展开Advanced，点击[Go to Quickstart (unsafe)]。 </p>
+      <h3>Mount GoogleDrive</h3>
+      <p>1. Goto <a target="_blank" style="font-size:12px;margin-right:5px;color:#337ab7;" href="https://developers.google.com/workspace/guides/create-project">this link</a>make project and get Client ID / Client Secret</p>
+      <p>2. Feel form Client ID / Client Secret，<a target="_blank" style="font-size:12px;margin-right:5px;color:#337ab7;" id="j_code_link"  onclick="directToCodeUrl(this)">click code</a>，if [Google hasn’t verified this app]，разверни Advanced，click [Go to Quickstart (unsafe)]</p>
 
       <form class="form-horizontal"  method="post">
         <input type="hidden" name="act" value="install" />
@@ -79,7 +79,7 @@ module.exports = async function (ctx, next) {
 
                   document.querySelector('#j_direct_uri').value = hit;
                 }
-                
+
               }catch(e){
                 console.log(e)
                 alert('文件无效')

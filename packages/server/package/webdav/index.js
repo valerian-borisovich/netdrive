@@ -149,7 +149,7 @@ const createDriver = (driver, { proxy, baseUrl } = {}) => {
           }
         }
 
-        // 目标是文件夹 移动
+        // target to join folder
         if (target.type == 'folder') {
           let res = await driver.mv(data.id, target.id)
           if (res?.error) {
@@ -157,24 +157,24 @@ const createDriver = (driver, { proxy, baseUrl } = {}) => {
           }
           return { status: 201 }
         }
-        //目标是文件 冲突
+        //target file conflict
         else {
           return {
             error: { code: 409 }
           }
         }
       }
-      // 不存在目标
+      // no target
       else {
-        // 目标上级
+        // upper
         let targetParent = await safeCall(driver.stat({ paths: targetPaths.slice(0, -1) }))
-        //存在文件夹上级
+        //folder exists
         if (targetParent?.type == 'folder') {
-          //是否在相同磁盘
+          //on this disk
           let isSameDisk = await driver.isSameDisk(data.id, targetParent.id)
           if (isSameDisk) {
             // console.log(data, targetParent)
-            // 相同父级目录
+            // parent folder
             if (data.extra.parent_id && data.extra.parent_id == targetParent.extra?.fid) {
               await driver.rename(data.id, dstName)
             } else {

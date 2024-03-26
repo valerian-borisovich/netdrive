@@ -9,7 +9,6 @@ class Controller {
   constructor(app, mix) {
     this.app = app
     this.config = app.config
-
     for (let i in mix) {
       this[i] = mix[i].bind(this)
     }
@@ -19,28 +18,22 @@ class Controller {
 class App extends Koa {
   constructor() {
     super()
-
     this.appInfo = {
       baseDir: path.join(__dirname, '../../'),
       env: process.pkg ? 'pkg' : process.env.NODE_ENV === 'dev' ? 'dev' : 'prod'
     }
-
     this.utils = utils
-
     this.loader = {
       loadToApp: this.loadToApp,
       loadToContext: this.loadToContext,
     }
-
     this.curl = createRequest(this)
-
     this.lifecycles = {
       beforeConfigLoad: [],
       configLoaded: [],
       loaded: [],
       ready: [],
     }
-
     this.init()
   }
 
@@ -95,7 +88,6 @@ class App extends Koa {
         console.log('miss middleware', name)
       }
     }
-
     for (let name in middleware) {
       this.middleware[name] = middleware[name]
     }

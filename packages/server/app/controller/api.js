@@ -9,17 +9,13 @@ const getConfig = (app, raw = false) => {
   if (config.drives) {
     config.drives = netdrive.getDisk()
   }
-
   config.drivers = netdrive.getDrivers()
-
   config.guide = {}
-
   config.drivers.forEach((i) => {
     if (app.guide[i.protocol]) {
       config.guide[i.protocol] = app.guide[i.protocol]
     }
   })
-
   return config
 }
 

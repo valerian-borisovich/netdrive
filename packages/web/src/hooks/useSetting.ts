@@ -33,7 +33,6 @@ export const useSetting: IUseSetting = (): any => {
         loginState.value = 1
         updateSetting(resp.data as ISetting)
       }
-
       hideLoading()
     })
   }

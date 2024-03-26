@@ -8,12 +8,12 @@
     "node": ">=14.0.0"
   },
   "scripts": {
+    "build:web": "cd packages/web && yarn build",
+    "build:server": "cd packages/server && yarn build",
+    "dev:web": "cd packages/web && yarn dev",
+    "dev:server": "cd packages/server && yarn dev",
     "dev": "cd packages/server && yarn dev",
-    "build-server": "cd packages/server && yarn pkg",
-    "build-web": "cd packages/web && yarn build",
-    "dev-web": "cd packages/web && yarn dev",
     "ci": "cd packages/server && yarn release",
-    "pkg": "cd packages/server && yarn pkg-demo",
     "changelog": "node scripts/changelog.js",
     "build": "node scripts/build.js",
     "release": "node scripts/release.js",

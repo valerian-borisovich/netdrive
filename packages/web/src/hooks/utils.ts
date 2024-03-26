@@ -2,6 +2,7 @@ import { getCurrentInstance, isRef, onMounted as vueOnMounted, onUnmounted as vu
 
 export const onMounted = (cb: () => any): void => {
   const instance = getCurrentInstance()
+  console.debug("web:hooks:utils:onMounted")
   if (instance) {
     if (instance?.isMounted) {
       cb()

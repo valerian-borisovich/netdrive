@@ -5,7 +5,6 @@ const { isClass, isFunction } = require('./utils')
 
 const loadFile = (filepath) => {
   if (!filepath) return
-
   //is file
   let isfile = /[\.\:]/i.test(filepath)
   if (isfile && !fs.existsSync(filepath)) {
@@ -24,10 +23,8 @@ const getDirPath = (dir, basepath) => {
   if (dir.path) {
     return dir.path
   }
-
   const name = dir.package || dir.name
   const lookupDirs = []
-
   //app
   lookupDirs.push(path.join(basepath, 'node_modules'))
   lookupDirs.push(path.join(process.cwd(), 'node_modules'))
@@ -108,7 +105,6 @@ const loadUnit = async (dir, basepath, appInfo) => {
         Object.assign(plugin, unit.plugin)
         plugin[name] = loadFile(app[name].path ? path.join(app[name].path) : app[name].package)
         service[name] = unit.service
-
         if (unit.config) {
           if (unit.config.middleware) config.middleware.unshift(...unit.config.middleware)
           if (unit.config.plugin) config.plugin.unshift(...unit.config.plugin)

@@ -1,7 +1,5 @@
 const fetch = require('node-fetch')
-
 const btoa = v => Buffer.from(v).toString('base64')
-
 const querystring = require('querystring')
 
 // {
@@ -31,13 +29,10 @@ const each = (src, fn) => {
 module.exports = (app) => {
   const request = async (url, options = {}) => {
     let { data, method = 'GET', contentType, responseType = 'json', followRedirect = true, maxRedirects = 10, auth, headers = {}, agent, compress = false, timeout = 3000, retry = 2 } = options
-
     let args = { method, size: 0, agent, compress, timeout, headers }
-
     if (auth) {
       args.headers['authorization'] = `Basic ${btoa(auth)}`
     }
-
     if (followRedirect) {
       args.redirect = 'follow'
       if (maxRedirects) args.follow = maxRedirects
@@ -107,8 +102,6 @@ module.exports = (app) => {
   }
 
   request.post = (url, options) => request(url, { ...options, method: 'POST' })
-
   request.get = (url, options) => request(url, { ...options, method: 'GET' })
-
   return request
 }
