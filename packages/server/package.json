@@ -8,12 +8,15 @@
     "start": "node app.js",
     "dev": "cross-env NODE_ENV=dev nodemon app.js -i ./cache",
     "clean": "rm -rf ./theme && rm -rf ./plugins && mkdir -p ./theme/default && mkdir -p ./plugins",
-    "build": "npm run clean && cp -r ../web/dist/* ./theme/default && cp -rn ../plugin/lib/* ./plugins"
+    "build": "npm run clean && cp -r ../web/dist/* ./theme/default && cp -rn ../plugin/lib/* ./plugins",
+    "pkg": "pkg . --output build/netdrive --targets linux-x64,linux-arm64,linuxstatic-armv7,macos-x64,win-x64 --public-packages '*'",
+    "pkg-local": "pkg . --output build/netdrive",
+    "release": "node ../../scripts/release.js --skipBuild --skipNpmPublish"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@netdrive/core": "^0.1",
-    "@netdrive/webdav": "^0.2",
+    "@netdrive/webdav": "^0.1",
     "bonjour": "^3.5.0",
     "etag": "^1.8.1",
     "global": "^4.4.0",
@@ -23,7 +26,7 @@
     "koa-json": "^2.0.2",
     "koa-logger": "^3.2.1",
     "koa-onerror": "^4.1.0",
-    "koa-router": "latest",
+    "koa-router": "^10.0.0",
     "koa-sendfile": "^3.0.0",
     "koa-session-minimal": "^4.0.0",
     "koa-static-cache": "^5.1.4",
@@ -36,7 +39,7 @@
     "write-file-atomic": "^3.0.3",
     "xml2js": "^0.4.23",
     "yaml": "^1.10.2"
-  },
+    },
   "pkg": {
     "scripts": [
       "./app/**/*",

@@ -86,10 +86,10 @@ b build:
 	yarn install
 #	@$(MAKE) -s setup
 
-	@$(MAKE) -s build-webdav
+#	@$(MAKE) -s build-webdav
 
-#	@$(MAKE) -s build-web
-	yarn build-web
+
+	yarn build:web
 
 	mkdir -p ./packages/server/theme/default
 	mkdir -p ./packages/server/plugins
@@ -106,7 +106,8 @@ bw build-web:
 	@echo "============================================="
 
 	@rm -rf ./packages/web/dist
-	yarn build-web
+#	yarn build-web
+	yarn build:web
 
 #	cd ./packages/web
 #	npm i && npm audit fix --force
