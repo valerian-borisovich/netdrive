@@ -17,8 +17,7 @@
       "scripthost"
     ],
     "rootDir": "./src",
-    "outDir": "./dist",
-    "watch": false
+    "outDir": "./dist"
   },
   "include": [
     "src/**/*.ts",

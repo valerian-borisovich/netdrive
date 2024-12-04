@@ -21,6 +21,8 @@ setup:
 	npm install yarn -g
 	npm install pm2 -g
 
+	yarn install
+
 	@echo "\a"
 
 
@@ -57,8 +59,6 @@ clean:
 	rm -rf codecov.sh
 	rm -rf coverage.xml
 
-	@echo "\a"
-
 
 .PHONY: docs
 docs:
@@ -67,8 +67,6 @@ docs:
 	@echo "-------------------------"
 
 	mkdocs serve
-
-	@echo "\a"
 
 
 .PHONY: build
@@ -83,20 +81,17 @@ b build:
 	@echo "               - Building -"
 	@echo "============================================="
 
-	yarn install
 #	@$(MAKE) -s setup
+	yarn install
 
-#	@$(MAKE) -s build-webdav
+	@$(MAKE) -s build-webdav
 
-
-	yarn build:web
+	@$(MAKE) -s build-web
 
 	mkdir -p ./packages/server/theme/default
 	mkdir -p ./packages/server/plugins
 	cp -r ./packages/web/dist/* ./packages/server/theme/default
 	cp -r ./packages/plugin/lib/* ./packages/server/plugins
-
-	@echo "\a"
 
 
 .PHONY: build-web
@@ -106,7 +101,6 @@ bw build-web:
 	@echo "============================================="
 
 	@rm -rf ./packages/web/dist
-#	yarn build-web
 	yarn build:web
 
 #	cd ./packages/web
@@ -114,8 +108,6 @@ bw build-web:
 #	npm run dev
 #	npm run build
 #	cd ../..
-
-	@echo "\a"
 
 
 .PHONY: build-webdav
@@ -128,9 +120,7 @@ bd build-webdav:
 #	@npm run build
 	rm -rf ./packages/webdav/dist
 	tsc -p ./packages/webdav
-	cd ../..
-
-	@echo "\a"
+	@cd ../..
 
 
 .PHONY: s start
@@ -139,11 +129,10 @@ s start:
 	@echo "               - Start -"
 	@echo "============================================="
 
-	node ./packages/server/app.js
+	@node ./packages/server/app.js
 
 #	@cd ./packages/server
 #	pm2 start app.js --name netdrive-server
 #	pm2 save
 #	pm2 startup
 
-	@echo "\a"
